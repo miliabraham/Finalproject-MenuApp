@@ -128,10 +128,6 @@ def editMenuItem(restaurant_id, menu_id):
 @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/delete', methods = ['GET', 'POST'])
 def deleteMenuItem(restaurant_id, menu_id):
 	deletedItem = session.query(MenuItem).filter_by(id = menu_id).one()
-	if deletedItem in appetizers or entrees or desserts:
-		appetizers.remove(deletedItem)
-		entrees.remove(deletedItem)
-		desserts.remove(deletedItem)
 	if request.method=="POST":
 		session.delete(deletedItem)
 		session.commit()
